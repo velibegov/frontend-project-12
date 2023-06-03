@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/velibegov/frontend-project-12#readme",
   "dependencies": {
-    "@hexlet/chat-server": "^1.1.6"
+    "@hexlet/chat-server": "^1.1.6",
+    "i18next": "^22.5.0",
+    "react-i18next": "^12.3.1"
   }
 }
