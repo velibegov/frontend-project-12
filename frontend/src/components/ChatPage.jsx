@@ -21,7 +21,7 @@ const ChatPage = () => {
   const auth = useAuth();
 
   useEffect(() => {
-    const didMount = true;
+    let didMount = true; // eslint-disable-line
     const fetchData = async () => {
       try {
         const res = await axios.get(routes.dataPath(), { headers: auth.getAuthHeader() });
