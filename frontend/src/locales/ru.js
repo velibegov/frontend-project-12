@@ -34,7 +34,7 @@ export default {
             channelName: 'Имя канала',
             editChannelName: 'Новое имя канала',
         },
-        browserChat: 'Browser Chat',
+        browserChat: 'Hexlet Chat',
         logout: 'Выйти',
         chat: {
             send: 'Отправить',
