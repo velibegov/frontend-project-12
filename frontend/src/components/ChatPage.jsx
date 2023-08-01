@@ -14,61 +14,63 @@ import routes from '../routes.js';
 import { useAuth } from '../hooks';
 
 const ChatPage = () => {
-    const dispatch = useDispatch();
-    const { t } = useTranslation();
-    const [fetching, setFetching] = useState(true);
-    const navigate = useNavigate();
-    const auth = useAuth();
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const [fetching, setFetching] = useState(true);
+  const navigate = useNavigate();
+  const auth = useAuth();
 
-    useEffect(() => {
-        let didMount = true;
-        const fetchData = async () => {
-            try {
-                const res = await axios.get(routes.dataPath(), { headers: auth.getAuthHeader() });
-                if (didMount) setFetching(false);
-                dispatch(actions.setInitialState(res.data));
-            } catch (err) {
-                if (!err.isAxiosError) {
-                    toast.error(t('errors.unknown'));
-                    return;
-                }
+  useEffect(() => {
+    let didMount = true;
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(routes.dataPath(), { headers: auth.getAuthHeader() });
+        if (didMount) setFetching(false);
+        dispatch(actions.setInitialState(res.data));
+      } catch (err) {
+        if (!err.isAxiosError) {
+          toast.error(t('errors.unknown'));
+          return;
+        }
 
-                if (err.response?.status === 401) {
-                    navigate(routes.loginPagePath());
-                } else {
-                    toast.error(t('errors.network'));
-                }
-            }
-        };
+        if (err.response?.status === 401) {
+          navigate(routes.loginPagePath());
+        } else {
+          toast.error(t('errors.network'));
+        }
+      }
+    };
 
-        fetchData();
+    fetchData();
 
-        return () => { didMount = false; };
-    }, [dispatch, auth, t, navigate]);
+    return () => {
+      didMount = false;
+    };
+  }, [dispatch, auth, t, navigate]);
 
-    return fetching
-        ? (
-            <div className="h-100 d-flex justify-content-center align-items-center">
-                <Spinner animation="border" role="status" variant="primary">
-                    <span className="visually-hidden">{t('loading')}</span>
-                </Spinner>
+  return fetching
+    ? (
+      <div className="h-100 d-flex justify-content-center align-items-center">
+        <Spinner animation="border" role="status" variant="primary">
+          <span className="visually-hidden">{t('loading')}</span>
+        </Spinner>
+      </div>
+    )
+    : (
+      <>
+        <Modal />
+        <div className="container h-100 my-4 overflow-hidden rounded shadow">
+          <div className="row h-100 bg-white flex-md-row">
+            <div className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
+              <ChannelsBox />
             </div>
-        )
-        : (
-            <>
-                <Modal />
-                <div className="container h-100 my-4 overflow-hidden rounded shadow">
-                    <div className="row h-100 bg-white flex-md-row">
-                        <div className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
-                            <ChannelsBox />
-                        </div>
-                        <div className="col p-0 h-100">
-                            <ChatBox />
-                        </div>
-                    </div>
-                </div>
-            </>
-        );
+            <div className="col p-0 h-100">
+              <ChatBox />
+            </div>
+          </div>
+        </div>
+      </>
+    );
 };
 
 export default ChatPage;

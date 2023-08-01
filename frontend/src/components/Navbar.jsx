@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks';
 
 const Navbar = () => {
-    const { logOut, user } = useAuth();
-    const { t } = useTranslation();
-    return (
-        <BootstrapNavbar bg="white" expand="lg" className="shadow-sm">
-            <div className="container">
-                <BootstrapNavbar.Brand as={Link} to="/">{t('browserChat')}</BootstrapNavbar.Brand>
-                {!!user && <Button onClick={logOut}>{t('logout')}</Button>}
-            </div>
-        </BootstrapNavbar>
-    );
+  const { logOut, user } = useAuth();
+  const { t } = useTranslation();
+  return (
+    <BootstrapNavbar bg="white" expand="lg" className="shadow-sm">
+      <div className="container">
+        <BootstrapNavbar.Brand as={Link} to="/">{t('browserChat')}</BootstrapNavbar.Brand>
+        {!!user && <Button onClick={logOut}>{t('logout')}</Button>}
+      </div>
+    </BootstrapNavbar>
+  );
 };
 
 export default Navbar;

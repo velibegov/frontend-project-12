@@ -1,9 +1,7 @@
-import {useContext} from 'react';
+import { useContext } from 'react';
 
-import {ApiContext, AuthContext} from '../contexts';
+import { ApiContext, AuthContext } from '../contexts';
 
 export const useAuth = () => useContext(AuthContext);
 
-export const useApi = () => {
-    return useContext(ApiContext);
-};
+export const useApi = () => useContext(ApiContext);
