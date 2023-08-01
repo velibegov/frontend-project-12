@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import leoProfanity from 'leo-profanity';
 import { useApi, useAuth } from '../hooks';
+import {toast} from "react-toastify";
 
 const NewMessageForm = ({ channel }) => {
   const { t } = useTranslation();
@@ -34,6 +35,9 @@ const NewMessageForm = ({ channel }) => {
         await api.sendMessage(message);
         f.resetForm();
       } catch (err) {
+        if (!err.isAxiosError) {
+          toast.error(t('errors.unknown'));
+        }
       }
       f.setSubmitting(false);
       inputRef.current.focus();

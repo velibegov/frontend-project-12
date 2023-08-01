@@ -147,15 +147,15 @@ const Registration = () => {
                   />
                   <Form.Control.Feedback type="invalid" tooltip>
                     {registrationFailed
-                          ? t('signup.alreadyExists')
-                          : t(f.errors.confirmPassword)}
+                      ? t('signup.alreadyExists')
+                      : t(f.errors.confirmPassword)}
                   </Form.Control.Feedback>
                   <Form.Label htmlFor="confirmPassword">{t('signup.confirm')}</Form.Label>
 
                 </Form.Group>
                 <Button
                   type="submit"
-variant="outline-primary"
+                  variant="outline-primary"
                   className="w-100"
                 >
                   {t('signup.submit')}

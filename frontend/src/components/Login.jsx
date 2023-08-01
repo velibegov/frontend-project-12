@@ -96,16 +96,16 @@ const Login = () => {
                   <Form.Label htmlFor="password">{t('login.password')}</Form.Label>
                   {authFailed && (
                   <Form.Control.Feedback
-                          type="invalid"
-                          tooltip
-                        >
-                          {t('login.authFailed')}
-                        </Form.Control.Feedback>
+                    type="invalid"
+                    tooltip
+                  >
+                    {t('login.authFailed')}
+                  </Form.Control.Feedback>
                   )}
                 </Form.Group>
                 <Button
                   type="submit"
-variant="outline-primary"
+                  variant="outline-primary"
                   className="w-100 mb-3"
                 >
                   {t('login.submit')}

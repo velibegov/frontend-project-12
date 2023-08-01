@@ -21,7 +21,7 @@ const ChatPage = () => {
   const auth = useAuth();
 
   useEffect(() => {
-    let didMount = true;
+    const didMount = true;
     const fetchData = async () => {
       try {
         const res = await axios.get(routes.dataPath(), { headers: auth.getAuthHeader() });

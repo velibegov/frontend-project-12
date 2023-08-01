@@ -9,7 +9,7 @@ import resources from './locales/index.js';
 
 export default async (socket) => {
   const withAcknowledgement = (socketFunc) => (...args) => new Promise((resolve, reject) => {
-    let state = 'pending';
+    let state = 'pending'; // eslint-disable-line
     const timer = setTimeout(() => {
       state = 'rejected';
       reject();
